@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>PetClinicMavenGit</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <jmeterScript>Petclinic Performance Test </jmeterScript>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jmeterExtensions>
+                        <artifact>org.apache.jmeter:ApacheJMeter_components:5.2.1</artifact>
+                        <artifact>kg.apc:jmeter-plugins-emulators:0.4</artifact>
+                        <artifact>kg.apc:jmeter-plugins-cmn-jmeter:0.6</artifact>
+                    </jmeterExtensions>
+                    <resultsFileNameDateFormat>yyyy-MM-dd_HH-mm-ss</resultsFileNameDateFormat>
+                    <overrideRootLogLevel>warn</overrideRootLogLevel>
+                    <testFilesIncluded>
+                        <jMeterTestFile>${jmeterScript}.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+                    <propertiesJMeter>
+                        <jmeter.reportgenerator.overall_granularity>1000</jmeter.reportgenerator.overall_granularity>
+                    </propertiesJMeter>
+                   <!-- <propertiesUser>
+                        <threads>${threads}</threads>
+                        <loops>${loops}</loops>
+                    </propertiesUser>-->
+                    <generateReports>true</generateReports>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
